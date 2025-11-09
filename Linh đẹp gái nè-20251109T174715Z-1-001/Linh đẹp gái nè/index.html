@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>ECOPOINT – Nền tảng hành động xanh cho sinh viên</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+  <!-- ================== HEADER ================== -->
+  <header>
+    <div class="brand">
+      <div class="brand-logo">E</div>
+      <div class="brand-text">
+        <h1>ECOPOINT Campus</h1>
+        <p>Nền tảng hành động xanh dành cho sinh viên</p>
+      </div>
+    </div>
+    <div class="user-badge">
+      <span class="user-dot"></span>
+      <span id="userName">Sinh viên demo</span>
+      <span style="font-size:12px;color:var(--text-muted)">• Khoa Kinh tế</span>
+    </div>
+  </header>
+
+  <!-- ================== TAB NAV ================== -->
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab-target="tab-challenges">
+      <span class="icon">🔥</span> Thử thách xanh
+    </button>
+    <button class="tab-btn" data-tab-target="tab-wallet">
+      <span class="icon">💳</span> Ví Ecopoint
+    </button>
+    <button class="tab-btn" data-tab-target="tab-rewards">
+      <span class="icon">🎁</span> Đổi thưởng & đối tác
+    </button>
+  </nav>
+
+  <div class="main-layout">
+    <!-- ================== MAIN CONTENT (3 TAB) ================== -->
+    <main class="card">
+      <!-- ===== TAB 1: THỬ THÁCH HẰNG NGÀY ===== -->
+      <section id="tab-challenges" class="tab-content active">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Danh sách thử thách xanh</div>
+            <div class="card-subtitle">
+              Chọn hoạt động, hoàn thành và nhận Ecopoint.
+            </div>
+          </div>
+          <button class="btn btn-outline" id="btnSuggest">
+            🤖 AI gợi ý thử thách
+          </button>
+        </div>
+
+        <div class="filters">
+          <!-- Lọc theo cấp độ -->
+          <span class="chip active" data-filter="all">Tất cả</span>
+          <span class="chip" data-filter="high">Tác động cao</span>
+          <span class="chip" data-filter="medium">Tác động trung bình</span>
+          <span class="chip" data-filter="low">Tác động thấp</span>
+        </div>
+
+        <div id="challengeList" class="challenge-list">
+          <!-- JS sẽ render các thử thách vào đây -->
+        </div>
+      </section>
+
+      <!-- ===== TAB 2: VÍ ECOPOINT ===== -->
+      <section id="tab-wallet" class="tab-content">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Ví Ecopoint của bạn</div>
+            <div class="card-subtitle">
+              Theo dõi điểm, cấp độ và lịch sử các hành động xanh.
+            </div>
+          </div>
+          <button class="btn btn-outline" id="btnResetDemo">
+            🔄 Reset demo
+          </button>
+        </div>
+
+        <div class="wallet-summary">
+          <div class="summary-item">
+            <div class="summary-label">Tổng Ecopoint</div>
+            <div class="summary-value" id="walletTotal">0</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Cấp độ</div>
+            <div class="summary-value" id="walletLevel">Rookie 🌱</div>
+            <div class="summary-chip" id="walletNextLevelText">
+              0 / 50 điểm tới cấp tiếp theo
+            </div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Số hành động đã ghi nhận</div>
+            <div class="summary-value" id="walletActionsCount">0</div>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <strong>Công thức tính Ecopoint:</strong><br>
+          Ecopoint = <em>Mức độ tác động</em> × <em>Hệ số xác thực</em> × <em>Hệ số thử thách</em><br>
+          • Cao (ví dụ: trồng cây) = 3 điểm cơ bản<br>
+          • Trung bình (tái chế, phân loại rác) = 2 điểm cơ bản<br>
+          • Thấp (chia sẻ bài viết, tuyên truyền) = 1 điểm cơ bản
+        </div>
+
+        <div>
+          <div class="card-title" style="font-size:14px;margin-bottom:4px;">
+            Lịch sử hành động gần đây
+          </div>
+          <div class="card-subtitle" style="margin-bottom:6px;">
+            (Demo đang lưu dữ liệu trên bộ nhớ tạm của trình duyệt)
+          </div>
+          <div id="historyList" class="history-list">
+            <!-- JS render lịch sử tại đây -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TAB 3: ĐỔI THƯỞNG ===== -->
+      <section id="tab-rewards" class="tab-content">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Đổi thưởng & đối tác</div>
+            <div class="card-subtitle">
+              Quy đổi Ecopoint thành voucher, đồ uống và sản phẩm xanh.
+            </div>
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);">
+            *Dữ liệu demo, có thể kết nối API đối tác sau.
+          </div>
+        </div>
+
+        <div id="rewardsMsg" class="msg"></div>
+
+        <div id="rewardGrid" class="reward-grid">
+          <!-- JS render rewards -->
+        </div>
+      </section>
+    </main>
+
+    <!-- ================== AI PANEL BÊN PHẢI (GIẢ LẬP) ================== -->
+    <aside class="card ai-panel">
+      <div class="ai-header">
+        <div>
+          <div class="card-title">Trợ lý AI xanh</div>
+          <div class="card-subtitle">
+            Gợi ý hoạt động & ghi chú nhanh cho dự án.
+          </div>
+        </div>
+        <span class="ai-badge">Demo • Chưa kết nối API</span>
+      </div>
+
+      <div id="aiLog" class="ai-log">
+        <div class="ai-message">
+          👋 Xin chào! Tớ là trợ lý AI demo.<br>
+          • Bấm “AI gợi ý thử thách” để nhận gợi ý hoạt động xanh.<br>
+          • Gõ từ khóa (VD: “rác nhựa”, “trồng cây”) để tớ đề xuất thêm ý tưởng nội dung cho chiến dịch.
+        </div>
+      </div>
+
+      <div class="ai-input-row">
+        <input id="aiInput" placeholder="Nhập từ khóa (ví dụ: rác thải, cây xanh, nước…)" />
+        <button class="btn btn-primary" id="aiSend">Gợi ý</button>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    ECOPOINT – bản demo cho dự án kinh doanh số (có thể tích hợp backend, AI thật & hệ thống QR sau này).
+  </footer>
+</div>
+<div>
+    <title>ECOPOINT Campus – Nền tảng thử thách xanh cho sinh viên</title>
+<meta name="description" content="Tham gia thử thách trồng cây, nhặt rác, tiết kiệm nước… nhận Ecopoint và đổi voucher, dành riêng cho sinh viên…" />
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
